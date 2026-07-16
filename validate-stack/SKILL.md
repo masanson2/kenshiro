@@ -24,7 +24,7 @@ Process only the stack approval command.
 
 ## Rules
 
-Require the active feature `current_phase: STACK_APPROVAL`. Approval is invalid if any mandatory project-index stack field, including `build.compile`, is `UNKNOWN` or its command is empty. `APPROVE STACK` sets feature `gates.stack.status: APPROVED` and `current_phase: ANALYZE_SPECIFICATION`. `REJECT STACK` sets `REJECTED` and `current_phase: ANALYZE_PROJECT`. No repository analysis or specification analysis occurs here.
+Require the active feature `current_phase: STACK_APPROVAL`. Approval is invalid if any mandatory project-index stack field, including `build.compile`, is `UNKNOWN` or its command is empty. `APPROVE STACK` sets feature `gates.stack.status: APPROVED` and `current_phase: ANALYZE_SPECIFICATION`. `REJECT STACK` sets `REJECTED`, retains `current_phase: STACK_APPROVAL`, and stops workflow execution. Only `REFRESH STACK` authorizes a new stack analysis. No repository analysis or specification analysis occurs here.
 
 ## State update
 

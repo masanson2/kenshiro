@@ -22,10 +22,11 @@ Kenshiro orchestrates a deterministic Spec-Driven Development workflow. It does 
 ## Routing
 
 1. Read `.kenshiro/project-index.yaml` and `.kenshiro/workflow.yaml`.
-2. If the project index does not exist, route to `analyze-project`.
-3. Reuse project index data. Route `analyze-project` only to validate or refresh outdated evidence.
-4. Resolve `active_feature` from the project registry. If absent, generate an unused ID as `YYYYMMDD-NNN-short-name`, where `NNN` is the next zero-padded sequence for the current ISO date in root `workflow.yaml`; create `.kenshiro/features/<feature-id>/`, initialize it from `shared/templates/feature/`, and register it as `IN_PROGRESS`.
-5. Read `.kenshiro/features/<feature-id>/workflow.yaml` and route exactly by `current_phase`:
+2. Resolve `active_feature` from the project registry. If absent, generate an unused ID as `YYYYMMDD-NNN-short-name`, where `NNN` is the next zero-padded sequence for the current ISO date in root `workflow.yaml`; create `.kenshiro/features/<feature-id>/`, initialize it from `shared/templates/feature/`, and register it as `IN_PROGRESS`.
+3. If the project index does not exist, route to `analyze-project`.
+4. If the project index exists, do not route to `analyze-project`. Set the new feature `skills.analyze-project.status: SKIPPED` and `current_phase: STACK_APPROVAL`.
+5. Route to `analyze-project` only for the exact case-insensitive command `REFRESH STACK`. Set feature `gates.stack.status: PENDING` and `current_phase: ANALYZE_PROJECT` before routing.
+6. Read `.kenshiro/features/<feature-id>/workflow.yaml` and route exactly by `current_phase`:
    - `ANALYZE_PROJECT` → `analyze-project`
    - `STACK_APPROVAL` → `validate-stack`
    - `ANALYZE_SPECIFICATION` → `analyze-spec`
@@ -37,9 +38,9 @@ Kenshiro orchestrates a deterministic Spec-Driven Development workflow. It does 
    - `TASK_APPROVAL` → `validate-tasks`
    - `IMPLEMENTATION` → `implementation`
    - `REVIEW` → `review`
-6. A skill owns its phase until it reaches the completion criteria declared in its `SKILL.md`.
-7. If a feature gate status is `FAILED` or `REJECTED`, stop. Route only when a human command creates a legal transition in `shared/state-machine.yaml`.
+7. A skill owns its phase until it reaches the completion criteria declared in its `SKILL.md`.
+8. If a feature gate status is `FAILED` or `REJECTED`, stop. Route only when a human command creates a legal transition in `shared/state-machine.yaml`.
 
 ## Command handling
 
-Route approval commands to the matching validator only. Validators accept exact case-insensitive commands defined in `shared/gates.yaml`, persist the result, and perform no next-phase work in that action. `APPROVE BRANCH` and `RENAME BRANCH <new-name>` route only to `validate-branch`.
+Route approval commands to the matching validator only. Validators accept exact case-insensitive commands defined in `shared/gates.yaml`, persist the result, and perform no next-phase work in that action. `APPROVE BRANCH` and `RENAME BRANCH <new-name>` route only to `validate-branch`. `REFRESH STACK` is the only command that authorizes stack analysis when `.kenshiro/project-index.yaml` already exists.

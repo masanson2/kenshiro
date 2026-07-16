@@ -8,7 +8,7 @@ phases:
   STACK_APPROVAL:
     gate: stack
     approve: ANALYZE_SPECIFICATION
-    reject: ANALYZE_PROJECT
+    reject: STACK_APPROVAL
   ANALYZE_SPECIFICATION:
     produces: [feature.yaml]
     next: IMPACT_ANALYSIS

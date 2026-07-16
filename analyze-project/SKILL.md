@@ -8,11 +8,12 @@ version: 1.0.0
 
 ## Responsibility
 
-Initialize project-level Kenshiro state and validate or refresh project knowledge.
+Initialize project-level Kenshiro state or explicitly refresh its stack.
 
 ## Inputs
 
 - Target repository files
+- Optional exact command: `REFRESH STACK`
 - `../shared/schemas/stack.schema.yaml`
 - `../shared/templates/project/`
 
@@ -28,7 +29,7 @@ Initialize project-level Kenshiro state and validate or refresh project knowledg
 
 When `.kenshiro/project-index.yaml` is absent, initialize `.kenshiro/`, `.kenshiro/features/`, `.kenshiro/docs/`, root `workflow.yaml`, and `activity.log`. Detect and persist repository metadata, technology stack, architecture style, and conventions in `project-index.yaml`.
 
-When `project-index.yaml` exists, do not re-analyze the repository. Validate recorded evidence paths and refresh only missing or outdated fields. Detect `.git` directly. `build.compile.command` must be an exact repository-supported command evidenced by project configuration or CI; never derive, transform, or substitute a command. Undetermined fields use `status: UNKNOWN`. State is compact English YAML. The Markdown document is concise Italian.
+When `project-index.yaml` exists, run only after the exact case-insensitive command `REFRESH STACK`. Do not validate evidence paths, inspect files, or refresh fields automatically. During an explicit refresh, detect and persist repository metadata, technology stack, architecture style, and conventions in `project-index.yaml`. Detect `.git` directly. `build.compile.command` must be an exact repository-supported command evidenced by project configuration or CI; never derive, transform, or substitute a command. Undetermined fields use `status: UNKNOWN`. State is compact English YAML. The Markdown document is concise Italian.
 
 ## State update
 
