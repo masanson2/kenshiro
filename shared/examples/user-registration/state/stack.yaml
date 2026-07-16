@@ -4,6 +4,7 @@ backend:
   version: {status: DETECTED, value: "21", evidence: [pom.xml]}
 build:
   tool: {status: DETECTED, value: Maven, evidence: [pom.xml]}
+  compile: {status: DETECTED, command: "./mvnw -q -DskipTests compile", evidence: [pom.xml, .mvn/wrapper/maven-wrapper.properties]}
 frontend:
   framework: {status: DETECTED, value: Angular, evidence: [package.json]}
 database:

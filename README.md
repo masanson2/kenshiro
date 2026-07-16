@@ -10,6 +10,8 @@ Kenshiro is an orchestrator plus independent phase skills. Each phase has one re
 
 `workflow.yaml` is the only source for workflow state. `activity.log` is never used to reconstruct state.
 
+`stack.yaml.build.compile.command` is the exact repository-supported compilation command. The implementation skill executes it after every source modification and records the result in the active task. It never derives or substitutes a command. Tasks use TDD and require a passing compile result before completion.
+
 ## Installation
 
 1. Copy `kenshiro/` into an agent skill directory, for example `.agents/skills/kenshiro/`.

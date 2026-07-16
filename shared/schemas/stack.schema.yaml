@@ -10,8 +10,18 @@ properties:
       version: {$ref: "#/$defs/detected"}
   build:
     type: object
-    required: [tool]
-    properties: {tool: {$ref: "#/$defs/detected"}}
+    required: [tool, compile]
+    properties:
+      tool: {$ref: "#/$defs/detected"}
+      compile:
+        type: object
+        required: [status, command, evidence]
+        properties:
+          status: {enum: [DETECTED, UNKNOWN]}
+          command: {type: string}
+          evidence:
+            type: array
+            items: {type: string}
   frontend:
     type: object
     required: [framework]

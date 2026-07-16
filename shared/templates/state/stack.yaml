@@ -4,6 +4,7 @@ backend:
   version: {status: UNKNOWN, evidence: []}
 build:
   tool: {status: UNKNOWN, evidence: []}
+  compile: {status: UNKNOWN, command: "", evidence: []}
 frontend:
   framework: {status: UNKNOWN, evidence: []}
 database:

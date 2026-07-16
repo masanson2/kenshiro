@@ -5,8 +5,12 @@ tasks:
     status: PENDING
     scope: [UserController]
     validation: [controller-test]
+    tdd: {red: PENDING, green: PENDING}
+    compilation: {status: PENDING, command: "./mvnw -q -DskipTests compile"}
   - id: TASK-002
     description: enforce-unique-email
     status: PENDING
     scope: [UserService, UserRepository]
     validation: [duplicate-email-test]
+    tdd: {red: PENDING, green: PENDING}
+    compilation: {status: PENDING, command: "./mvnw -q -DskipTests compile"}

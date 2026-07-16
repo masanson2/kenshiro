@@ -12,4 +12,5 @@
 ## Build e CI/CD
 
 - Maven
+- Compilazione: `./mvnw -q -DskipTests compile`
 - GitHub Actions

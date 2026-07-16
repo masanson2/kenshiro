@@ -6,7 +6,7 @@ properties:
     type: array
     items:
       type: object
-      required: [id, description, status, scope, validation]
+      required: [id, description, status, scope, validation, tdd, compilation]
       properties:
         id: {type: string, pattern: "^TASK-[0-9]{3,}$"}
         description: {type: string}
@@ -17,3 +17,15 @@ properties:
         validation:
           type: array
           items: {type: string}
+        tdd:
+          type: object
+          required: [red, green]
+          properties:
+            red: {enum: [PENDING, PASSED, NOT_APPLICABLE]}
+            green: {enum: [PENDING, PASSED]}
+        compilation:
+          type: object
+          required: [status, command]
+          properties:
+            status: {enum: [PENDING, PASSED, FAILED]}
+            command: {type: string}

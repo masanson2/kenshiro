@@ -9,6 +9,10 @@ requires:
     - feature.yaml
     - impact.yaml
     - tasks.yaml
+  stack:
+    build_compile:
+      status: DETECTED
+      command: required
 deny_action: source_modification
 on_denial:
   workflow_status: BLOCKED

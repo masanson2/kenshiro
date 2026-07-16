@@ -15,4 +15,5 @@
 ## Build e CI/CD
 
 - {{build}}
+- Compilazione: `{{compile_command}}`
 - {{cicd}}

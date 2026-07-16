@@ -24,7 +24,7 @@ Process only the stack approval command.
 
 ## Rules
 
-Require `current_phase: STACK_APPROVAL`. Approval is invalid if any mandatory field is `UNKNOWN`. `APPROVE STACK` sets `gates.stack.status: APPROVED` and `current_phase: ANALYZE_SPECIFICATION`. `REJECT STACK` sets `REJECTED` and `current_phase: ANALYZE_PROJECT`. No repository analysis or specification analysis occurs here.
+Require `current_phase: STACK_APPROVAL`. Approval is invalid if any mandatory field, including `build.compile`, is `UNKNOWN` or its command is empty. `APPROVE STACK` sets `gates.stack.status: APPROVED` and `current_phase: ANALYZE_SPECIFICATION`. `REJECT STACK` sets `REJECTED` and `current_phase: ANALYZE_PROJECT`. No repository analysis or specification analysis occurs here.
 
 ## State update
 
