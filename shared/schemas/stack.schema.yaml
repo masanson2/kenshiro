@@ -1,0 +1,58 @@
+type: object
+required: [backend, build, frontend, database, architecture, api, testing, security, logging, containerization, cicd]
+properties:
+  backend:
+    type: object
+    required: [language, framework, version]
+    properties:
+      language: {$ref: "#/$defs/detected"}
+      framework: {$ref: "#/$defs/detected"}
+      version: {$ref: "#/$defs/detected"}
+  build:
+    type: object
+    required: [tool]
+    properties: {tool: {$ref: "#/$defs/detected"}}
+  frontend:
+    type: object
+    required: [framework]
+    properties: {framework: {$ref: "#/$defs/detected"}}
+  database:
+    type: object
+    required: [type]
+    properties: {type: {$ref: "#/$defs/detected"}}
+  architecture:
+    type: object
+    required: [style]
+    properties: {style: {$ref: "#/$defs/detected"}}
+  api:
+    type: object
+    required: [style]
+    properties: {style: {$ref: "#/$defs/detected"}}
+  testing:
+    type: object
+    required: [framework]
+    properties: {framework: {$ref: "#/$defs/detected"}}
+  security:
+    type: object
+    required: [authentication]
+    properties: {authentication: {$ref: "#/$defs/detected"}}
+  logging:
+    type: object
+    required: [framework]
+    properties: {framework: {$ref: "#/$defs/detected"}}
+  containerization: {$ref: "#/$defs/detected"}
+  cicd:
+    type: object
+    required: [platform]
+    properties: {platform: {$ref: "#/$defs/detected"}}
+$defs:
+  detected:
+    type: object
+    required: [status, evidence]
+    properties:
+      status: {enum: [DETECTED, UNKNOWN]}
+      value: {type: string}
+      version: {type: string}
+      evidence:
+        type: array
+        items: {type: string}

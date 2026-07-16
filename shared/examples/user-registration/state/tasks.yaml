@@ -1,0 +1,12 @@
+feature_id: FEAT-001
+tasks:
+  - id: TASK-001
+    description: add-user-creation-endpoint
+    status: PENDING
+    scope: [UserController]
+    validation: [controller-test]
+  - id: TASK-002
+    description: enforce-unique-email
+    status: PENDING
+    scope: [UserService, UserRepository]
+    validation: [duplicate-email-test]

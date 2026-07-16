@@ -1,0 +1,15 @@
+feature_id: FEAT-001
+components:
+  services: [src/main/java/com/example/user/UserService.java]
+  repositories: [src/main/java/com/example/user/UserRepository.java]
+  controllers: [src/main/java/com/example/user/UserController.java]
+  apis: [POST /users]
+  schedulers: []
+  batch_jobs: []
+  database_artifacts: []
+  tests: [src/test/java/com/example/user/UserServiceTest.java]
+dependencies:
+  - {from: UserController, to: UserService, relation: calls}
+  - {from: UserService, to: UserRepository, relation: persists}
+regressions: [duplicate-email-validation]
+risk: MEDIUM

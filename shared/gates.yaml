@@ -1,0 +1,21 @@
+gates:
+  stack:
+    phase: STACK_APPROVAL
+    command: APPROVE STACK
+    artifact: stack.yaml
+    required_status: DETECTED
+    failure_status: FAILED
+    approved_status: APPROVED
+    rejected_status: REJECTED
+  impact:
+    phase: IMPACT_APPROVAL
+    command: APPROVE IMPACT
+    artifact: impact.yaml
+    approved_status: APPROVED
+    rejected_status: REJECTED
+  tasks:
+    phase: TASK_APPROVAL
+    command: APPROVE TASKS
+    artifact: tasks.yaml
+    approved_status: APPROVED
+    rejected_status: REJECTED

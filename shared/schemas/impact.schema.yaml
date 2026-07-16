@@ -1,0 +1,32 @@
+type: object
+required: [feature_id, components, dependencies, regressions, risk]
+properties:
+  feature_id: {type: string}
+  components:
+    type: object
+    properties:
+      services: {$ref: "#/$defs/paths"}
+      repositories: {$ref: "#/$defs/paths"}
+      controllers: {$ref: "#/$defs/paths"}
+      apis: {$ref: "#/$defs/paths"}
+      schedulers: {$ref: "#/$defs/paths"}
+      batch_jobs: {$ref: "#/$defs/paths"}
+      database_artifacts: {$ref: "#/$defs/paths"}
+      tests: {$ref: "#/$defs/paths"}
+  dependencies:
+    type: array
+    items:
+      type: object
+      required: [from, to, relation]
+      properties:
+        from: {type: string}
+        to: {type: string}
+        relation: {type: string}
+  regressions:
+    type: array
+    items: {type: string}
+  risk: {enum: [LOW, MEDIUM, HIGH]}
+$defs:
+  paths:
+    type: array
+    items: {type: string}

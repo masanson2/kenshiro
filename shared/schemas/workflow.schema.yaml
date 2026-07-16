@@ -1,0 +1,32 @@
+type: object
+required: [version, current_phase, skills, gates]
+properties:
+  version: {type: integer, const: 1}
+  current_phase:
+    enum: [ANALYZE_PROJECT, STACK_APPROVAL, ANALYZE_SPECIFICATION, IMPACT_ANALYSIS, IMPACT_APPROVAL, GENERATE_TASKS, TASK_APPROVAL, IMPLEMENTATION, REVIEW, DONE]
+  skills:
+    type: object
+    properties:
+      analyze-project: {$ref: "#/$defs/status"}
+      analyze-specification: {$ref: "#/$defs/status"}
+      impact-analysis: {$ref: "#/$defs/status"}
+      generate-tasks: {$ref: "#/$defs/status"}
+      implementation: {$ref: "#/$defs/status"}
+      review: {$ref: "#/$defs/status"}
+  gates:
+    type: object
+    properties:
+      stack: {$ref: "#/$defs/gate"}
+      impact: {$ref: "#/$defs/gate"}
+      tasks: {$ref: "#/$defs/gate"}
+$defs:
+  status:
+    type: object
+    required: [status]
+    properties:
+      status: {enum: [PENDING, RUNNING, DONE, BLOCKED]}
+  gate:
+    type: object
+    required: [status]
+    properties:
+      status: {enum: [PENDING, APPROVED, REJECTED, FAILED]}

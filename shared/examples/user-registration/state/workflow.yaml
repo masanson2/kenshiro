@@ -1,0 +1,13 @@
+version: 1
+current_phase: IMPLEMENTATION
+skills:
+  analyze-project: {status: DONE}
+  analyze-specification: {status: DONE}
+  impact-analysis: {status: DONE}
+  generate-tasks: {status: DONE}
+  implementation: {status: PENDING}
+  review: {status: PENDING}
+gates:
+  stack: {status: APPROVED}
+  impact: {status: APPROVED}
+  tasks: {status: APPROVED}

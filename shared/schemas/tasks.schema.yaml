@@ -1,0 +1,19 @@
+type: object
+required: [feature_id, tasks]
+properties:
+  feature_id: {type: string}
+  tasks:
+    type: array
+    items:
+      type: object
+      required: [id, description, status, scope, validation]
+      properties:
+        id: {type: string, pattern: "^TASK-[0-9]{3,}$"}
+        description: {type: string}
+        status: {enum: [PENDING, IN_PROGRESS, DONE, BLOCKED]}
+        scope:
+          type: array
+          items: {type: string}
+        validation:
+          type: array
+          items: {type: string}

@@ -1,0 +1,35 @@
+version: 1
+initial_phase: ANALYZE_PROJECT
+terminal_phase: DONE
+phases:
+  ANALYZE_PROJECT:
+    produces: [stack.yaml, stack.md]
+    next: STACK_APPROVAL
+  STACK_APPROVAL:
+    gate: stack
+    approve: ANALYZE_SPECIFICATION
+    reject: ANALYZE_PROJECT
+  ANALYZE_SPECIFICATION:
+    produces: [feature.yaml]
+    next: IMPACT_ANALYSIS
+  IMPACT_ANALYSIS:
+    produces: [impact.yaml, impact.md]
+    next: IMPACT_APPROVAL
+  IMPACT_APPROVAL:
+    gate: impact
+    approve: GENERATE_TASKS
+    reject: IMPACT_ANALYSIS
+  GENERATE_TASKS:
+    produces: [tasks.yaml, tasks.md]
+    next: TASK_APPROVAL
+  TASK_APPROVAL:
+    gate: tasks
+    approve: IMPLEMENTATION
+    reject: GENERATE_TASKS
+  IMPLEMENTATION:
+    requires_gates: [stack, impact, tasks]
+    next: REVIEW
+  REVIEW:
+    produces: [review.md]
+    next: DONE
+  DONE: {}

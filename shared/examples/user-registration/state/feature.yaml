@@ -1,0 +1,4 @@
+feature: {id: FEAT-001, name: user-registration}
+requirements: [create-user, unique-email]
+acceptance_criteria: [returns-created-user, rejects-duplicate-email]
+constraints: [no-database-changes]

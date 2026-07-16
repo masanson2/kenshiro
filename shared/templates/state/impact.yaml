@@ -1,0 +1,13 @@
+feature_id: ""
+components:
+  services: []
+  repositories: []
+  controllers: []
+  apis: []
+  schedulers: []
+  batch_jobs: []
+  database_artifacts: []
+  tests: []
+dependencies: []
+regressions: []
+risk: LOW
