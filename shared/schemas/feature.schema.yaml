@@ -3,10 +3,11 @@ required: [feature, requirements, acceptance_criteria, constraints]
 properties:
   feature:
     type: object
-    required: [id, name]
+    required: [id, name, branch_type]
     properties:
-      id: {type: string, pattern: "^FEAT-[0-9]{3,}$"}
+      id: {type: string, pattern: "^[0-9]{8}-[0-9]{3}-[a-z0-9]+(-[a-z0-9]+)*$"}
       name: {type: string}
+      branch_type: {enum: [FEAT, FIX, REFACTOR, UNKNOWN]}
   requirements:
     type: array
     items: {type: string}

@@ -3,7 +3,7 @@ initial_phase: ANALYZE_PROJECT
 terminal_phase: DONE
 phases:
   ANALYZE_PROJECT:
-    produces: [stack.yaml, stack.md]
+    produces: [project-index.yaml]
     next: STACK_APPROVAL
   STACK_APPROVAL:
     gate: stack
@@ -17,8 +17,15 @@ phases:
     next: IMPACT_APPROVAL
   IMPACT_APPROVAL:
     gate: impact
-    approve: GENERATE_TASKS
+    approve: PROPOSE_BRANCH
     reject: IMPACT_ANALYSIS
+  PROPOSE_BRANCH:
+    produces: [git.yaml]
+    next: BRANCH_APPROVAL
+  BRANCH_APPROVAL:
+    gate: branch
+    approve: GENERATE_TASKS
+    reject: PROPOSE_BRANCH
   GENERATE_TASKS:
     produces: [tasks.yaml, tasks.md]
     next: TASK_APPROVAL
@@ -27,7 +34,7 @@ phases:
     approve: IMPLEMENTATION
     reject: GENERATE_TASKS
   IMPLEMENTATION:
-    requires_gates: [stack, impact, tasks]
+    requires_gates: [stack, impact, branch, tasks]
     next: REVIEW
   REVIEW:
     produces: [review.md]

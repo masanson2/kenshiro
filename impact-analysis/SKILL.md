@@ -13,15 +13,15 @@ Perform usage and dependency analysis only.
 ## Inputs
 
 - Target repository
-- `.kenshiro/state/feature.yaml`
-- `.kenshiro/state/workflow.yaml`
+- `.kenshiro/features/<feature-id>/feature.yaml`
+- `.kenshiro/features/<feature-id>/workflow.yaml`
 - `../shared/schemas/impact.schema.yaml`
 
 ## Outputs
 
-- `.kenshiro/state/impact.yaml`
-- `.kenshiro/docs/impact.md`
-- Updated `.kenshiro/state/workflow.yaml`
+- `.kenshiro/features/<feature-id>/impact.yaml`
+- `.kenshiro/features/<feature-id>/docs/impact.md`
+- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
@@ -30,7 +30,7 @@ Inspect usages, callers, implementations, services, repositories, controllers, A
 
 ## State update
 
-Set `skills.impact-analysis.status: DONE`, `gates.impact.status: PENDING`, and `current_phase: IMPACT_APPROVAL`. Append `Impact Analysis Completed`.
+Set feature `skills.impact-analysis.status: DONE`, `gates.impact.status: PENDING`, and `current_phase: IMPACT_APPROVAL`. Append `Impact Analysis Completed`.
 
 ## Completion criteria
 

@@ -1,0 +1,17 @@
+type: object
+required: [repository, base_branch, feature_branch, git_branch]
+properties:
+  repository: {type: boolean}
+  base_branch: {type: string}
+  feature_branch:
+    type: object
+    required: [name, status, current_branch]
+    properties:
+      name: {type: string}
+      status: {enum: [PROPOSED, APPROVED, ACTIVE, FAILED]}
+      current_branch: {type: string}
+  git_branch:
+    type: object
+    required: [status]
+    properties:
+      status: {enum: [PENDING, ACTIVE, FAILED]}

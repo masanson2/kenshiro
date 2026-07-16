@@ -2,7 +2,7 @@ gates:
   stack:
     phase: STACK_APPROVAL
     command: APPROVE STACK
-    artifact: stack.yaml
+    artifact: project-index.yaml
     required_status: DETECTED
     failure_status: FAILED
     approved_status: APPROVED
@@ -11,6 +11,13 @@ gates:
     phase: IMPACT_APPROVAL
     command: APPROVE IMPACT
     artifact: impact.yaml
+    approved_status: APPROVED
+    rejected_status: REJECTED
+  branch:
+    phase: BRANCH_APPROVAL
+    command: APPROVE BRANCH
+    rename_command: RENAME BRANCH <new-name>
+    artifact: git.yaml
     approved_status: APPROVED
     rejected_status: REJECTED
   tasks:

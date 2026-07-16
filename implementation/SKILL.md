@@ -12,29 +12,33 @@ Implement approved tasks only.
 
 ## Inputs
 
-- `.kenshiro/state/workflow.yaml`
-- `.kenshiro/state/stack.yaml`
-- `.kenshiro/state/feature.yaml`
-- `.kenshiro/state/impact.yaml`
-- `.kenshiro/state/tasks.yaml`
+- `.kenshiro/project-index.yaml`
+- `.kenshiro/features/<feature-id>/workflow.yaml`
+- `.kenshiro/features/<feature-id>/feature.yaml`
+- `.kenshiro/features/<feature-id>/impact.yaml`
+- `.kenshiro/features/<feature-id>/tasks.yaml`
+- `.kenshiro/features/<feature-id>/git.yaml`
 - `../shared/implementation-guard.yaml`
 
 ## Outputs
 
 - Application changes limited to approved task scope
-- Updated `.kenshiro/state/tasks.yaml`
-- Updated `.kenshiro/state/workflow.yaml`
+- Updated `.kenshiro/features/<feature-id>/tasks.yaml`
+- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
+- Updated `.kenshiro/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
 
-Evaluate the implementation guard before any source change. Read all input state files. Implement only `PENDING` tasks whose scopes match `impact.yaml`. Do not add dependencies unless a feature constraint explicitly permits it. Apply SOLID principles. Follow TDD: create or update the test, record `tdd.red: PASSED` after the relevant test fails, then implement the minimum production change and record `tdd.green: PASSED` after it passes.
+Evaluate the implementation guard before any source change. Verify root `workflow.yaml.active_feature` equals `<feature-id>`. Verify feature gates `stack`, `impact`, `branch`, and `tasks` are `APPROVED`. Verify `.git` exists, `git.yaml.feature_branch.status: ACTIVE`, and the current Git branch equals `git.yaml.feature_branch.name`. If any check fails, set `git_branch.status: FAILED` in `git.yaml`, set the feature registry status to `BLOCKED`, append `Implementation Blocked`, and do not modify source code.
 
-After every source modification, execute exactly `stack.yaml.build.compile.command`. Do not infer, alter, replace, or skip that command. Persist the exact command and result in the task `compilation` object, append the activity event, and immediately stop the task with `compilation.status: FAILED` if compilation fails. Set a task to `DONE` only after its declared validation, TDD green phase, and latest compilation all pass.
+Never implement directly on `main`, `master`, `develop`, `release/*`, or `hotfix/*`. Treat a protected current branch as a failed branch check. Set `git_branch.status: FAILED`, `gates.branch.status: PENDING`, feature registry status `BLOCKED`, and `current_phase: PROPOSE_BRANCH`; stop without source changes. A new proposal, explicit `APPROVE BRANCH`, and branch creation are then required. Implement only `PENDING` tasks whose scopes match `impact.yaml`. Do not add dependencies unless a feature constraint explicitly permits it. Apply SOLID principles. Follow TDD: create or update the test, record `tdd.red: PASSED` after the relevant test fails, then implement the minimum production change and record `tdd.green: PASSED` after it passes.
+
+After every source modification, execute exactly `project-index.yaml.stack.build.compile.command`. Do not infer, alter, replace, or skip that command. Persist the exact command and result in the task `compilation` object, append the activity event, and immediately stop the task with `compilation.status: FAILED` if compilation fails. Set a task to `DONE` only after its declared validation, TDD green phase, and latest compilation all pass.
 
 ## State update
 
-Persist task status after every task. When all tasks are `DONE`, set `skills.implementation.status: DONE` and `current_phase: REVIEW`. Append one activity event for each task status change.
+Persist task status after every task. When all tasks are `DONE`, set feature `skills.implementation.status: DONE` and `current_phase: REVIEW`. Append one activity event for each task status change.
 
 ## Completion criteria
 

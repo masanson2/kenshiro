@@ -12,19 +12,19 @@ Process only the impact approval command.
 
 ## Inputs
 
-- `.kenshiro/state/workflow.yaml`
-- `.kenshiro/state/impact.yaml`
+- `.kenshiro/features/<feature-id>/workflow.yaml`
+- `.kenshiro/features/<feature-id>/impact.yaml`
 - Exact command: `APPROVE IMPACT` or `REJECT IMPACT`
 - `../shared/gates.yaml`
 
 ## Outputs
 
-- Updated `.kenshiro/state/workflow.yaml`
+- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
 
-Require `current_phase: IMPACT_APPROVAL`. Approval sets `gates.impact.status: APPROVED` and `current_phase: GENERATE_TASKS`. Rejection sets `REJECTED` and `current_phase: IMPACT_ANALYSIS`. Do not generate tasks.
+Require feature `current_phase: IMPACT_APPROVAL`. Approval sets `gates.impact.status: APPROVED` and `current_phase: PROPOSE_BRANCH`. Rejection sets `REJECTED` and `current_phase: IMPACT_ANALYSIS`. Do not create or propose branches.
 
 ## State update
 

@@ -1,0 +1,16 @@
+type: object
+required: [version, active_feature, features]
+properties:
+  version: {type: integer, const: 1}
+  active_feature:
+    type: [string, "null"]
+    pattern: "^[0-9]{8}-[0-9]{3}-[a-z0-9]+(-[a-z0-9]+)*$"
+  features:
+    type: object
+    patternProperties:
+      "^[0-9]{8}-[0-9]{3}-[a-z0-9]+(-[a-z0-9]+)*$":
+        type: object
+        required: [status]
+        properties:
+          status: {enum: [IN_PROGRESS, BLOCKED, COMPLETED, FAILED]}
+    additionalProperties: false

@@ -12,16 +12,17 @@ Create the human review artifact only.
 
 ## Inputs
 
-- `.kenshiro/state/workflow.yaml`
-- `.kenshiro/state/tasks.yaml`
+- `.kenshiro/features/<feature-id>/workflow.yaml`
+- `.kenshiro/features/<feature-id>/tasks.yaml`
 - Implemented component list
 - Executed validation and test results
-- `../shared/templates/docs/review.md`
+- `../shared/templates/feature/docs/review.md`
 
 ## Outputs
 
-- `.kenshiro/docs/review.md`
-- Updated `.kenshiro/state/workflow.yaml`
+- `.kenshiro/features/<feature-id>/docs/review.md`
+- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
+- Updated `.kenshiro/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
@@ -30,7 +31,7 @@ Require `current_phase: REVIEW` and all tasks `DONE` with `tdd.green: PASSED` an
 
 ## State update
 
-Set `skills.review.status: DONE` and `current_phase: DONE`. Append `Review Completed`.
+Set feature `skills.review.status: DONE` and `current_phase: DONE`. Set the feature registry entry to `COMPLETED`. Append `Review Completed`.
 
 ## Completion criteria
 

@@ -1,0 +1,4 @@
+repository: false
+base_branch: ""
+feature_branch: {name: "", status: PROPOSED, current_branch: ""}
+git_branch: {status: PENDING}

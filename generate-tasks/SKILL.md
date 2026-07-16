@@ -12,25 +12,27 @@ Convert approved impact into tasks only.
 
 ## Inputs
 
-- `.kenshiro/state/feature.yaml`
-- `.kenshiro/state/impact.yaml`
-- `.kenshiro/state/workflow.yaml` with approved impact gate
+- `.kenshiro/project-index.yaml`
+- `.kenshiro/features/<feature-id>/feature.yaml`
+- `.kenshiro/features/<feature-id>/impact.yaml`
+- `.kenshiro/features/<feature-id>/git.yaml`
+- `.kenshiro/features/<feature-id>/workflow.yaml` with approved impact and branch gates
 - `../shared/schemas/tasks.schema.yaml`
 
 ## Outputs
 
-- `.kenshiro/state/tasks.yaml`
-- `.kenshiro/docs/tasks.md`
-- Updated `.kenshiro/state/workflow.yaml`
+- `.kenshiro/features/<feature-id>/tasks.yaml`
+- `.kenshiro/features/<feature-id>/docs/tasks.md`
+- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
 
-Each task has an ID, compact English description, `PENDING` status, scope, validation, `tdd: {red: PENDING, green: PENDING}`, and `compilation: {status: PENDING, command: <stack.build.compile.command>}`. Copy the command byte-for-byte from approved stack state. Tasks must be independent, minimal, verifiable, within approved impact, and designed with tests before production changes. Do not modify source code.
+Each task has an ID, compact English description, `PENDING` status, scope, validation, `tdd: {red: PENDING, green: PENDING}`, and `compilation: {status: PENDING, command: <project-index.stack.build.compile.command>}`. Copy the command byte-for-byte from approved project state. Tasks must be independent, minimal, verifiable, within approved impact, and designed with tests before production changes. Do not modify source code.
 
 ## State update
 
-Set `skills.generate-tasks.status: DONE`, `gates.tasks.status: PENDING`, and `current_phase: TASK_APPROVAL`. Append `Generate Tasks Completed`.
+Set feature `skills.generate-tasks.status: DONE`, `gates.tasks.status: PENDING`, and `current_phase: TASK_APPROVAL`. Append `Generate Tasks Completed`.
 
 ## Completion criteria
 

@@ -12,19 +12,19 @@ Process only the task approval command.
 
 ## Inputs
 
-- `.kenshiro/state/workflow.yaml`
-- `.kenshiro/state/tasks.yaml`
+- `.kenshiro/features/<feature-id>/workflow.yaml`
+- `.kenshiro/features/<feature-id>/tasks.yaml`
 - Exact command: `APPROVE TASKS` or `REJECT TASKS`
 - `../shared/gates.yaml`
 
 ## Outputs
 
-- Updated `.kenshiro/state/workflow.yaml`
+- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
 
-Require `current_phase: TASK_APPROVAL`. Approval sets `gates.tasks.status: APPROVED` and `current_phase: IMPLEMENTATION`. Rejection sets `REJECTED` and `current_phase: GENERATE_TASKS`. Do not modify source code.
+Require feature `current_phase: TASK_APPROVAL`. Approval sets `gates.tasks.status: APPROVED` and `current_phase: IMPLEMENTATION`. Rejection sets `REJECTED` and `current_phase: GENERATE_TASKS`. Do not modify source code.
 
 ## State update
 

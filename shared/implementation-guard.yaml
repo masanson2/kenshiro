@@ -3,16 +3,23 @@ requires:
   gates:
     stack: APPROVED
     impact: APPROVED
+    branch: APPROVED
     tasks: APPROVED
   artifacts:
-    - stack.yaml
     - feature.yaml
     - impact.yaml
     - tasks.yaml
+    - git.yaml
+    - project-index.yaml
   stack:
     build_compile:
       status: DETECTED
       command: required
+  git:
+    repository: true
+    feature_branch:
+      status: ACTIVE
+      current_branch: matches_feature_branch
 deny_action: source_modification
 on_denial:
   workflow_status: BLOCKED

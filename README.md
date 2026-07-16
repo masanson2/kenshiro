@@ -4,13 +4,15 @@ Kenshiro is an orchestrator plus independent phase skills. Each phase has one re
 
 | Area | Purpose | Format | Language |
 |---|---|---|---|
-| `.kenshiro/state/` | Machine workflow authority | YAML | English |
-| `.kenshiro/docs/` | Human review artifacts | Markdown | Italian |
+| `.kenshiro/project-index.yaml` | Project stack, architecture, conventions, and repository metadata | YAML | English |
+| `.kenshiro/workflow.yaml` | Feature registry | YAML | English |
+| `.kenshiro/features/<feature-id>/` | Feature state and documents | YAML / Markdown | English / Italian |
+| `.kenshiro/docs/` | Project-level human documents | Markdown | Italian |
 | `.kenshiro/activity.log` | Append-only audit trail | Text | ISO 8601 timestamps |
 
-`workflow.yaml` is the only source for workflow state. `activity.log` is never used to reconstruct state.
+The root `workflow.yaml` is the feature registry. Each feature's `workflow.yaml` is the sole workflow authority for that feature. `activity.log` is never used to reconstruct state.
 
-`stack.yaml.build.compile.command` is the exact repository-supported compilation command. The implementation skill executes it after every source modification and records the result in the active task. It never derives or substitutes a command. Tasks use TDD and require a passing compile result before completion.
+`project-index.yaml.stack.build.compile.command` is the exact repository-supported compilation command. The implementation skill executes it after every source modification and records the result in the active task. It never derives or substitutes a command. Tasks use TDD and require a passing compile result before completion.
 
 ## Installation
 
@@ -27,6 +29,8 @@ kenshiro/
 ├── validate-stack/
 ├── analyze-spec/
 ├── impact-analysis/
+├── propose-branch/
+├── validate-branch/
 ├── validate-impact/
 ├── generate-tasks/
 ├── validate-tasks/
@@ -41,16 +45,20 @@ kenshiro/
 
 ```text
 .kenshiro/
-├── state/
-│   ├── workflow.yaml
-│   ├── stack.yaml
-│   ├── feature.yaml
-│   ├── impact.yaml
-│   └── tasks.yaml
+├── project-index.yaml
+├── workflow.yaml
 ├── docs/
-│   ├── stack.md
-│   ├── impact.md
-│   ├── tasks.md
-│   └── review.md
+│   └── stack.md
+├── features/
+│   └── <feature-id>/
+│       ├── feature.yaml
+│       ├── impact.yaml
+│       ├── tasks.yaml
+│       ├── workflow.yaml
+│       ├── git.yaml
+│       └── docs/
+│           ├── impact.md
+│           ├── tasks.md
+│           └── review.md
 └── activity.log
 ```

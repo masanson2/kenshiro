@@ -1,0 +1,36 @@
+type: object
+required: [version, repository, stack, architecture, conventions]
+properties:
+  version: {type: integer, const: 1}
+  repository:
+    type: object
+    required: [path, git]
+    properties:
+      path: {type: string}
+      git:
+        type: object
+        required: [detected]
+        properties:
+          detected: {type: boolean}
+          remote: {type: string}
+          default_branch: {type: string}
+  stack: {$ref: "stack.schema.yaml"}
+  architecture:
+    type: object
+    required: [style]
+    properties:
+      style: {type: string}
+      evidence:
+        type: array
+        items: {type: string}
+  conventions:
+    type: array
+    items:
+      type: object
+      required: [name, value, evidence]
+      properties:
+        name: {type: string}
+        value: {type: string}
+        evidence:
+          type: array
+          items: {type: string}

@@ -4,10 +4,12 @@ skills:
   analyze-project: {status: PENDING}
   analyze-specification: {status: PENDING}
   impact-analysis: {status: PENDING}
+  propose-branch: {status: PENDING}
   generate-tasks: {status: PENDING}
   implementation: {status: PENDING}
   review: {status: PENDING}
 gates:
   stack: {status: PENDING}
   impact: {status: PENDING}
+  branch: {status: PENDING}
   tasks: {status: PENDING}
