@@ -15,6 +15,11 @@ requires:
     build_compile:
       status: DETECTED
       command: required
+      quiet: true
+    build_test:
+      status: DETECTED
+      command: required
+      quiet: true
   git:
     repository: true
     feature_branch:

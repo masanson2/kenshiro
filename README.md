@@ -12,7 +12,7 @@ Kenshiro is an orchestrator plus independent phase skills. Each phase has one re
 
 The root `workflow.yaml` is the feature registry. Each feature's `workflow.yaml` is the sole workflow authority for that feature. `activity.log` is never used to reconstruct state.
 
-`project-index.yaml.stack.build.compile.command` is the exact repository-supported compilation command. The implementation skill executes it after every source modification and records the result in the active task. It never derives or substitutes a command. Tasks use TDD and require a passing compile result before completion.
+`project-index.yaml.stack.build.compile.command` and `project-index.yaml.stack.build.test.command` are exact repository-supported quiet console commands. The implementation skill executes quiet compilation after every source modification and quiet tests for every TDD phase. It never derives, substitutes, or suppresses either command externally.
 
 Kenshiro creates local task commits after validation. `git.yaml.push` is permanently `FORBIDDEN`; Kenshiro never pushes or publishes changes remotely.
 

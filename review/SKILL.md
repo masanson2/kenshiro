@@ -27,7 +27,7 @@ Create the human review artifact only.
 
 ## Rules
 
-Require `current_phase: REVIEW` and all tasks `DONE` with `tdd.green: PASSED` and `compilation.status: PASSED`. Write concise Italian Markdown containing only modified components, implemented tasks, executed validations, executed tests, and remaining risks. Include the recorded compilation command and result under executed validations. Never include reasoning, opinions, chain of thought, or unexecuted checks.
+Require `current_phase: REVIEW` and all tasks `DONE` with `tdd.green: PASSED` and `compilation.status: PASSED`. Write concise Italian Markdown containing only modified components, implemented tasks, executed validations, executed tests, and remaining risks. Include the recorded quiet compilation and test commands with their results under executed validations. Never include reasoning, opinions, chain of thought, or unexecuted checks.
 
 ## State update
 

@@ -16,4 +16,5 @@
 
 - {{build}}
 - Compilazione: `{{compile_command}}`
+- Test: `{{test_command}}`
 - {{cicd}}

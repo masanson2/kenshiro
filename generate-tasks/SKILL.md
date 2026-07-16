@@ -28,7 +28,7 @@ Convert approved impact into tasks only.
 
 ## Rules
 
-Each task has an ID, compact English description, `PENDING` status, scope, validation, `tdd: {red: PENDING, green: PENDING}`, and `compilation: {status: PENDING, command: <project-index.stack.build.compile.command>}`. Copy the command byte-for-byte from approved project state. Tasks must be independent, minimal, verifiable, within approved impact, and designed with tests before production changes. Do not modify source code.
+Each task has an ID, compact English description, `PENDING` status, scope, validation, `tdd: {red: PENDING, green: PENDING, command: <project-index.stack.build.test.command>}`, and `compilation: {status: PENDING, command: <project-index.stack.build.compile.command>}`. Copy both quiet commands byte-for-byte from approved project state. Tasks must be independent, minimal, verifiable, within approved impact, and designed with tests before production changes. Do not modify source code.
 
 ## State update
 

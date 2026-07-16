@@ -29,7 +29,7 @@ Initialize project-level Kenshiro state or explicitly refresh its stack.
 
 When `.kenshiro/project-index.yaml` is absent, initialize `.kenshiro/`, `.kenshiro/features/`, `.kenshiro/docs/`, root `workflow.yaml`, and `activity.log`. Detect and persist repository metadata, technology stack, architecture style, and conventions in `project-index.yaml`.
 
-When `project-index.yaml` exists, run only after the exact case-insensitive command `REFRESH STACK`. Do not validate evidence paths, inspect files, or refresh fields automatically. During an explicit refresh, detect and persist repository metadata, technology stack, architecture style, and conventions in `project-index.yaml`. Detect `.git` directly. `build.compile.command` must be an exact repository-supported command evidenced by project configuration or CI; never derive, transform, or substitute a command. Undetermined fields use `status: UNKNOWN`. State is compact English YAML. The Markdown document is concise Italian.
+When `project-index.yaml` exists, run only after the exact case-insensitive command `REFRESH STACK`. Do not validate evidence paths, inspect files, or refresh fields automatically. During an explicit refresh, detect and persist repository metadata, technology stack, architecture style, and conventions in `project-index.yaml`. Detect `.git` directly. `build.compile.command` and `build.test.command` must be exact repository-supported quiet console commands, each with `quiet: true` and evidence. Use the build tool's quiet mode only; never use a verbose command, suppress output externally, derive, transform, or substitute a command. Undetermined fields use `status: UNKNOWN`. State is compact English YAML. The Markdown document is concise Italian.
 
 ## State update
 
@@ -37,4 +37,4 @@ Set the active feature `skills.analyze-project.status: DONE`. Set its `gates.sta
 
 ## Completion criteria
 
-All required fields, including `build.compile.command`, exist in `project-index.yaml`, every field has evidence, `project-index.yaml` conforms to its schema, and `docs/stack.md` exists.
+All required fields, including quiet `build.compile.command` and quiet `build.test.command`, exist in `project-index.yaml`, every field has evidence, `project-index.yaml` conforms to its schema, and `docs/stack.md` exists.

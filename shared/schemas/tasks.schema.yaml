@@ -19,10 +19,11 @@ properties:
           items: {type: string}
         tdd:
           type: object
-          required: [red, green]
+          required: [red, green, command]
           properties:
             red: {enum: [PENDING, PASSED, NOT_APPLICABLE]}
             green: {enum: [PENDING, PASSED]}
+            command: {type: string}
         compilation:
           type: object
           required: [status, command]

@@ -10,15 +10,26 @@ properties:
       version: {$ref: "#/$defs/detected"}
   build:
     type: object
-    required: [tool, compile]
+    required: [tool, compile, test]
     properties:
       tool: {$ref: "#/$defs/detected"}
       compile:
         type: object
-        required: [status, command, evidence]
+        required: [status, command, quiet, evidence]
         properties:
           status: {enum: [DETECTED, UNKNOWN]}
           command: {type: string}
+          quiet: {const: true}
+          evidence:
+            type: array
+            items: {type: string}
+      test:
+        type: object
+        required: [status, command, quiet, evidence]
+        properties:
+          status: {enum: [DETECTED, UNKNOWN]}
+          command: {type: string}
+          quiet: {const: true}
           evidence:
             type: array
             items: {type: string}

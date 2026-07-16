@@ -9,7 +9,8 @@ stack:
     version: {status: UNKNOWN, evidence: []}
   build:
     tool: {status: UNKNOWN, evidence: []}
-    compile: {status: UNKNOWN, command: "", evidence: []}
+    compile: {status: UNKNOWN, command: "", quiet: true, evidence: []}
+    test: {status: UNKNOWN, command: "", quiet: true, evidence: []}
   frontend:
     framework: {status: UNKNOWN, evidence: []}
   database:
