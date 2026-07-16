@@ -2,9 +2,16 @@ gates:
   stack:
     phase: STACK_APPROVAL
     command: APPROVE STACK
-    artifact: project-index.yaml
+    artifact: stack.yaml
     required_status: DETECTED
     failure_status: FAILED
+    approved_status: APPROVED
+    rejected_status: REJECTED
+  features:
+    phase: FEATURE_APPROVAL
+    command: APPROVE FEATURES
+    reject_command: REJECT FEATURES
+    artifact: features-analysis.md
     approved_status: APPROVED
     rejected_status: REJECTED
   impact:

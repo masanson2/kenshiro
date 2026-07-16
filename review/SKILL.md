@@ -1,6 +1,6 @@
 ---
 name: kenshiro-review
-description: Produce the concise human Kenshiro review document after deterministic implementation completion.
+description: Produce the concise human Kenshiro review document after validated implementation completion.
 version: 1.0.0
 ---
 

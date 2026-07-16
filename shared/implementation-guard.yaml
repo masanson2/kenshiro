@@ -1,7 +1,6 @@
 requires:
   current_phase: IMPLEMENTATION
   gates:
-    stack: APPROVED
     impact: APPROVED
     branch: APPROVED
     tasks: APPROVED
@@ -10,7 +9,7 @@ requires:
     - impact.yaml
     - tasks.yaml
     - git.yaml
-    - project-index.yaml
+    - ../../stack.yaml
   stack:
     build_compile:
       status: DETECTED

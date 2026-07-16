@@ -24,7 +24,7 @@ Process only the impact approval command.
 
 ## Rules
 
-Require feature `current_phase: IMPACT_APPROVAL`. Approval sets `gates.impact.status: APPROVED` and `current_phase: PROPOSE_BRANCH`. Rejection sets `REJECTED` and `current_phase: IMPACT_ANALYSIS`. Do not create or propose branches.
+Require feature `current_phase: IMPACT_APPROVAL`. Approval sets `gates.impact.status: APPROVED` and `current_phase: GENERATE_TASKS`. Rejection sets `REJECTED` and `current_phase: IMPACT_ANALYSIS`. Do not create or propose branches.
 
 ## State update
 

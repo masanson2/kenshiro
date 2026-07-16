@@ -1,31 +1,44 @@
 version: 1
-initial_phase: ANALYZE_PROJECT
-terminal_phase: DONE
-phases:
+project_initial_phase: ANALYZE_PROJECT
+feature_initial_phase: PROPOSE_BRANCH
+feature_terminal_phase: DONE
+project_phases:
   ANALYZE_PROJECT:
-    produces: [project-index.yaml]
+    produces: [project-index.yaml, stack.yaml, docs/stack-review.md]
     next: STACK_APPROVAL
   STACK_APPROVAL:
     gate: stack
-    approve: ANALYZE_SPECIFICATION
+    approve: REQUIREMENTS_ANALYSIS
     reject: STACK_APPROVAL
-  ANALYZE_SPECIFICATION:
-    produces: [feature.yaml]
-    next: IMPACT_ANALYSIS
-  IMPACT_ANALYSIS:
-    produces: [impact.yaml, impact.md]
-    next: IMPACT_APPROVAL
-  IMPACT_APPROVAL:
-    gate: impact
-    approve: PROPOSE_BRANCH
-    reject: IMPACT_ANALYSIS
+  REQUIREMENTS_ANALYSIS:
+    next: REQUIREMENT_DECOMPOSITION
+  REQUIREMENT_DECOMPOSITION:
+    next: FEATURE_IDENTIFICATION
+  FEATURE_IDENTIFICATION:
+    produces: [features-analysis.md]
+    next: FEATURE_APPROVAL
+  FEATURE_APPROVAL:
+    gate: features
+    approve: FEATURE_CREATION
+    reject: FEATURE_IDENTIFICATION
+  FEATURE_CREATION:
+    next: READY_FOR_FEATURE_WORK
+  READY_FOR_FEATURE_WORK: {}
+feature_phases:
   PROPOSE_BRANCH:
     produces: [git.yaml]
     next: BRANCH_APPROVAL
   BRANCH_APPROVAL:
     gate: branch
-    approve: GENERATE_TASKS
+    approve: IMPACT_ANALYSIS
     reject: PROPOSE_BRANCH
+  IMPACT_ANALYSIS:
+    produces: [impact.yaml, impact.md]
+    next: IMPACT_APPROVAL
+  IMPACT_APPROVAL:
+    gate: impact
+    approve: GENERATE_TASKS
+    reject: IMPACT_ANALYSIS
   GENERATE_TASKS:
     produces: [tasks.yaml, tasks.md]
     next: TASK_APPROVAL
@@ -34,7 +47,7 @@ phases:
     approve: IMPLEMENTATION
     reject: GENERATE_TASKS
   IMPLEMENTATION:
-    requires_gates: [stack, impact, branch, tasks]
+    requires_gates: [impact, branch, tasks]
     next: REVIEW
   REVIEW:
     produces: [review.md]

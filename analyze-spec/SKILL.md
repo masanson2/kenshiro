@@ -1,38 +1,36 @@
 ---
-name: kenshiro-analyze-spec
-description: Normalize an approved feature request into a compact deterministic feature state artifact.
+name: kenshiro-requirements-analysis
+description: Normalize an approved stack's user request into project-scoped requirements before feature creation.
 version: 1.0.0
 ---
 
-# Analyze Specification
+# Requirements Analysis
 
 ## Responsibility
 
-Extract only feature requirements into `feature.yaml`.
+Extract the requested business requirements without creating feature state.
 
 ## Inputs
 
-- User-provided feature specification
+- User-provided change request
 - `.kenshiro/project-index.yaml`
+- `.kenshiro/stack.yaml`
 - `.kenshiro/workflow.yaml`
-- `.kenshiro/features/<feature-id>/workflow.yaml` with approved stack gate
-- `../shared/schemas/feature.schema.yaml`
+- Root workflow with approved stack gate
 
 ## Outputs
 
-- `.kenshiro/features/<feature-id>/feature.yaml`
-- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
 - Updated `.kenshiro/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
 
-The orchestrator creates and registers the feature workspace before this skill runs. Store its ID, name, explicit `branch_type` (`FEAT`, `FIX`, or `REFACTOR`), requirements, acceptance criteria, and constraints in that workspace's `feature.yaml`. If branch type is not explicit, store `UNKNOWN`; later branch proposal must fail. Use English compact YAML. Do not analyze code, impacts, tasks, alternatives, or rationale.
+Require root `project_phase: REQUIREMENTS_ANALYSIS` and an approved stack gate. Normalize only explicit requirements, acceptance criteria, and constraints into root `workflow.yaml.requirements`. Do not create or register a feature directory, create a Git branch, generate tasks, analyze impacts, or implement changes. Use compact English YAML. Do not infer requirements.
 
 ## State update
 
-Set feature `skills.analyze-specification.status: DONE` and `current_phase: IMPACT_ANALYSIS`. Append `Analyze Specification Completed`.
+Set root `project_skills.requirements-analysis.status: DONE` and `project_phase: REQUIREMENT_DECOMPOSITION`. Append `Requirements Analysis Completed`.
 
 ## Completion criteria
 
-`feature.yaml` conforms to its schema and contains no inferred requirements.
+The normalized project requirements contain no inferred requirements and no feature directory, branch, task plan, or implementation was created.

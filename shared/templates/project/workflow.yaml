@@ -1,3 +1,14 @@
 version: 1
+project_phase: ANALYZE_PROJECT
+project_skills:
+  analyze-project: {status: PENDING}
+  requirements-analysis: {status: PENDING}
+  requirement-decomposition: {status: PENDING}
+  feature-identification: {status: PENDING}
+project_gates:
+  stack: {status: PENDING}
+  features: {status: PENDING}
+requirements: []
+capabilities: []
 active_feature: null
 features: {}

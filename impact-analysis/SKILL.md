@@ -26,7 +26,7 @@ Perform usage and dependency analysis only.
 
 ## Rules
 
-Inspect usages, callers, implementations, services, repositories, controllers, APIs, schedulers, batch jobs, database artifacts, tests, dependency chains, and potential regressions. Record findings only. Do not alter source code or propose implementation alternatives.
+Inspect usages, callers, implementations, services, repositories, controllers, APIs, schedulers, batch jobs, database artifacts, tests, dependency chains, and potential regressions for this feature only. Record findings only. Do not combine impacts with another feature, alter source code, or propose implementation alternatives.
 
 ## State update
 

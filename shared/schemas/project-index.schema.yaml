@@ -1,5 +1,5 @@
 type: object
-required: [version, repository, stack, architecture, conventions]
+required: [version, repository, stack_artifact, architecture, conventions]
 properties:
   version: {type: integer, const: 1}
   repository:
@@ -14,7 +14,7 @@ properties:
           detected: {type: boolean}
           remote: {type: string}
           default_branch: {type: string}
-  stack: {$ref: "stack.schema.yaml"}
+  stack_artifact: {const: stack.yaml}
   architecture:
     type: object
     required: [style]

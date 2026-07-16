@@ -26,7 +26,7 @@ Detect Git and create one branch proposal for the active feature.
 
 ## Rules
 
-Require `current_phase: PROPOSE_BRANCH`. Detect Git by checking `.git`. If absent, write `repository: false`, set feature `gates.branch.status: FAILED`, and stop. If `feature.branch_type` is `UNKNOWN`, set `gates.branch.status: FAILED` and stop. If present, read the repository base branch and propose exactly one branch name from the explicit branch type and feature short name: `FEAT` → `feat/<short-name>`, `FIX` → `fix/<short-name>`, `REFACTOR` → `refactor/<short-name>`. Do not create, checkout, or modify a branch.
+Require `current_phase: PROPOSE_BRANCH`. Detect Git by checking `.git`. If absent, write `repository: false`, set feature `gates.branch.status: FAILED`, and stop. Require `feature.proposed_branch` from the approved feature analysis; if it is empty or does not match its `branch_type`, set `gates.branch.status: FAILED` and stop. If present, read the repository base branch and propose exactly that one approved branch name. Do not create, checkout, or modify a branch.
 
 ## State update
 

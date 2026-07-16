@@ -1,4 +1,4 @@
-feature: {id: "", name: "", branch_type: UNKNOWN}
+feature: {id: "", name: "", branch_type: UNKNOWN, proposed_branch: ""}
 requirements: []
 acceptance_criteria: []
 constraints: []

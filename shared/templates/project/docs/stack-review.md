@@ -1,4 +1,4 @@
-# Stack Progetto
+# Revisione Stack Progetto
 
 ## Backend
 

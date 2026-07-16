@@ -2,31 +2,6 @@ version: 1
 repository:
   path: ""
   git: {detected: false}
-stack:
-  backend:
-    language: {status: UNKNOWN, evidence: []}
-    framework: {status: UNKNOWN, evidence: []}
-    version: {status: UNKNOWN, evidence: []}
-  build:
-    tool: {status: UNKNOWN, evidence: []}
-    compile: {status: UNKNOWN, command: "", quiet: true, evidence: []}
-    test: {status: UNKNOWN, command: "", quiet: true, evidence: []}
-  frontend:
-    framework: {status: UNKNOWN, evidence: []}
-  database:
-    type: {status: UNKNOWN, evidence: []}
-  architecture:
-    style: {status: UNKNOWN, evidence: []}
-  api:
-    style: {status: UNKNOWN, evidence: []}
-  testing:
-    framework: {status: UNKNOWN, evidence: []}
-  security:
-    authentication: {status: UNKNOWN, evidence: []}
-  logging:
-    framework: {status: UNKNOWN, evidence: []}
-  containerization: {status: UNKNOWN, evidence: []}
-  cicd:
-    platform: {status: UNKNOWN, evidence: []}
+stack_artifact: stack.yaml
 architecture: {style: UNKNOWN, evidence: []}
 conventions: []

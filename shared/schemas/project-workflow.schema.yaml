@@ -1,7 +1,23 @@
 type: object
-required: [version, active_feature, features]
+required: [version, project_phase, project_skills, project_gates, active_feature, features]
 properties:
   version: {type: integer, const: 1}
+  project_phase:
+    enum: [ANALYZE_PROJECT, STACK_APPROVAL, REQUIREMENTS_ANALYSIS, REQUIREMENT_DECOMPOSITION, FEATURE_IDENTIFICATION, FEATURE_APPROVAL, FEATURE_CREATION, READY_FOR_FEATURE_WORK]
+  project_skills:
+    type: object
+    required: [analyze-project, requirements-analysis, requirement-decomposition, feature-identification]
+    properties:
+      analyze-project: {$ref: "#/$defs/status"}
+      requirements-analysis: {$ref: "#/$defs/status"}
+      requirement-decomposition: {$ref: "#/$defs/status"}
+      feature-identification: {$ref: "#/$defs/status"}
+  project_gates:
+    type: object
+    required: [stack, features]
+    properties:
+      stack: {$ref: "#/$defs/gate"}
+      features: {$ref: "#/$defs/gate"}
   active_feature:
     type: [string, "null"]
     pattern: "^[0-9]{8}-[0-9]{3}-[a-z0-9]+(-[a-z0-9]+)*$"
@@ -14,3 +30,27 @@ properties:
         properties:
           status: {enum: [IN_PROGRESS, BLOCKED, COMPLETED, FAILED]}
     additionalProperties: false
+  requirements:
+    type: array
+    items: {type: string}
+  capabilities:
+    type: array
+    items:
+      type: object
+      required: [name, description, reason_for_separation, proposed_branch]
+      properties:
+        name: {type: string}
+        description: {type: string}
+        reason_for_separation: {type: string}
+        proposed_branch: {type: string}
+$defs:
+  status:
+    type: object
+    required: [status]
+    properties:
+      status: {enum: [PENDING, RUNNING, DONE, SKIPPED, BLOCKED]}
+  gate:
+    type: object
+    required: [status]
+    properties:
+      status: {enum: [PENDING, APPROVED, REJECTED, FAILED]}

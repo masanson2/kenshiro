@@ -13,18 +13,19 @@ Process only the stack approval command.
 ## Inputs
 
 - `.kenshiro/project-index.yaml`
-- `.kenshiro/features/<feature-id>/workflow.yaml`
+- `.kenshiro/stack.yaml`
+- `.kenshiro/workflow.yaml`
 - Exact command: `APPROVE STACK` or `REJECT STACK`
 - `../shared/gates.yaml`
 
 ## Outputs
 
-- Updated `.kenshiro/features/<feature-id>/workflow.yaml`
+- Updated `.kenshiro/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
 ## Rules
 
-Require the active feature `current_phase: STACK_APPROVAL`. Approval is invalid if any mandatory project-index stack field, including `build.compile` and `build.test`, is `UNKNOWN`, has an empty command, or has `quiet` other than `true`. `APPROVE STACK` sets feature `gates.stack.status: APPROVED` and `current_phase: ANALYZE_SPECIFICATION`. `REJECT STACK` sets `REJECTED`, retains `current_phase: STACK_APPROVAL`, and stops workflow execution. Only `REFRESH STACK` authorizes a new stack analysis. No repository analysis or specification analysis occurs here.
+Require root `project_phase: STACK_APPROVAL`. Approval is invalid if any mandatory `stack.yaml` field, including `build.compile` and `build.test`, is `UNKNOWN`, has an empty command, or has `quiet` other than `true`. `APPROVE STACK` sets root `project_gates.stack.status: APPROVED` and `project_phase: REQUIREMENTS_ANALYSIS`. `REJECT STACK` sets `REJECTED`, retains `project_phase: STACK_APPROVAL`, and stops workflow execution. Only `REFRESH STACK` authorizes a new stack analysis. No repository or requirements analysis occurs here.
 
 ## State update
 
