@@ -17,6 +17,7 @@ Kenshiro orchestrates a deterministic Spec-Driven Development workflow. It does 
 - Chat history and `.kenshiro/activity.log` are not state sources.
 - `shared/state-machine.yaml` defines the only legal transitions.
 - `shared/implementation-guard.yaml` forbids source modification unless all gates are approved.
+- Git push is forbidden. Kenshiro may create local commits only.
 
 ## Routing
 

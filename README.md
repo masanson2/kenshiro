@@ -14,6 +14,8 @@ The root `workflow.yaml` is the feature registry. Each feature's `workflow.yaml`
 
 `project-index.yaml.stack.build.compile.command` is the exact repository-supported compilation command. The implementation skill executes it after every source modification and records the result in the active task. It never derives or substitutes a command. Tasks use TDD and require a passing compile result before completion.
 
+Kenshiro creates local task commits after validation. `git.yaml.push` is permanently `FORBIDDEN`; Kenshiro never pushes or publishes changes remotely.
+
 ## Installation
 
 1. Copy `kenshiro/` into an agent skill directory, for example `.agents/skills/kenshiro/`.

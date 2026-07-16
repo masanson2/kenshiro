@@ -34,7 +34,9 @@ Evaluate the implementation guard before any source change. Verify root `workflo
 
 Never implement directly on `main`, `master`, `develop`, `release/*`, or `hotfix/*`. Treat a protected current branch as a failed branch check. Set `git_branch.status: FAILED`, `gates.branch.status: PENDING`, feature registry status `BLOCKED`, and `current_phase: PROPOSE_BRANCH`; stop without source changes. A new proposal, explicit `APPROVE BRANCH`, and branch creation are then required. Implement only `PENDING` tasks whose scopes match `impact.yaml`. Do not add dependencies unless a feature constraint explicitly permits it. Apply SOLID principles. Follow TDD: create or update the test, record `tdd.red: PASSED` after the relevant test fails, then implement the minimum production change and record `tdd.green: PASSED` after it passes.
 
-After every source modification, execute exactly `project-index.yaml.stack.build.compile.command`. Do not infer, alter, replace, or skip that command. Persist the exact command and result in the task `compilation` object, append the activity event, and immediately stop the task with `compilation.status: FAILED` if compilation fails. Set a task to `DONE` only after its declared validation, TDD green phase, and latest compilation all pass.
+After every source modification, execute exactly `project-index.yaml.stack.build.compile.command`. Do not infer, alter, replace, or skip that command. Persist the exact command and result in the task `compilation` object, append the activity event, and immediately stop the task with `compilation.status: FAILED` if compilation fails.
+
+After a task's declared validation, TDD green phase, and latest compilation pass, create one local Git commit containing only that task's approved changes. Record its task ID, commit hash, and `CREATED` status in `git.yaml.commits`. If the commit fails, record `FAILED`, stop the task, and do not set it to `DONE`. `git.yaml.push` is always `FORBIDDEN`: never run `git push`, configure a push remote, create a pull request, or perform any remote publication. Set a task to `DONE` only after its local commit is recorded.
 
 ## State update
 
