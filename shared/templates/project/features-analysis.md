@@ -1,17 +1,17 @@
-# Detected Features
+# Funzionalita individuate
 
-## Feature Name
+## Nome funzionalita
 
 {{feature_name}}
 
-## Description
+## Descrizione
 
 {{description}}
 
-## Reason for Separation
+## Motivo della separazione
 
 {{reason_for_separation}}
 
-## Proposed Branch
+## Branch proposto
 
 {{proposed_branch}}

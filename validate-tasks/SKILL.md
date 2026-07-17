@@ -13,7 +13,9 @@ Process only the task approval command.
 ## Inputs
 
 - `.kenshiro/features/<feature-id>/workflow.yaml`
+- `.kenshiro/features/<feature-id>/impact.yaml`
 - `.kenshiro/features/<feature-id>/tasks.yaml`
+- `.kenshiro/features/<feature-id>/docs/tasks.md`
 - Exact command: `APPROVE TASKS` or `REJECT TASKS`
 - `../shared/gates.yaml`
 
@@ -24,7 +26,7 @@ Process only the task approval command.
 
 ## Rules
 
-Require feature `current_phase: TASK_APPROVAL`. Approval sets `gates.tasks.status: APPROVED` and `current_phase: IMPLEMENTATION`. Rejection sets `REJECTED` and `current_phase: GENERATE_TASKS`. Do not modify source code.
+Require feature `current_phase: TASK_APPROVAL`. Before approval, require `docs/tasks.md` to be a complete technical, discursive Italian plan with no unresolved placeholders, a Mermaid class/component diagram, query analysis, API contract analysis, As-is and To-be variations, and one entry for every task in `tasks.yaml`. When `impact.yaml.api_contract.format` is not `NONE`, require every relevant task scope to include the recorded source-of-truth contract path; otherwise reject the task gate and return to `GENERATE_TASKS`. Approval sets `gates.tasks.status: APPROVED`, `gates.implementation.status: PENDING`, and `current_phase: IMPLEMENTATION_APPROVAL`. Rejection sets `REJECTED` and `current_phase: GENERATE_TASKS`. Do not modify source code.
 
 ## State update
 

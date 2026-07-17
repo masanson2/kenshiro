@@ -4,6 +4,7 @@ requires:
     impact: APPROVED
     branch: APPROVED
     tasks: APPROVED
+    implementation: APPROVED
   artifacts:
     - feature.yaml
     - impact.yaml

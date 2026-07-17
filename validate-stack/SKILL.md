@@ -14,6 +14,7 @@ Process only the stack approval command.
 
 - `.kenshiro/project-index.yaml`
 - `.kenshiro/stack.yaml`
+- `.kenshiro/docs/stack-review.md`
 - `.kenshiro/workflow.yaml`
 - Exact command: `APPROVE STACK` or `REJECT STACK`
 - `../shared/gates.yaml`
@@ -25,7 +26,7 @@ Process only the stack approval command.
 
 ## Rules
 
-Require root `project_phase: STACK_APPROVAL`. Approval is invalid if any mandatory `stack.yaml` field, including `build.compile` and `build.test`, is `UNKNOWN`, has an empty command, or has `quiet` other than `true`. `APPROVE STACK` sets root `project_gates.stack.status: APPROVED` and `project_phase: REQUIREMENTS_ANALYSIS`. `REJECT STACK` sets `REJECTED`, retains `project_phase: STACK_APPROVAL`, and stops workflow execution. Only `REFRESH STACK` authorizes a new stack analysis. No repository or requirements analysis occurs here.
+Require root `project_phase: STACK_APPROVAL`. Approval is invalid if any mandatory `stack.yaml` field, including `build.compile` and `build.test`, is `UNKNOWN`, has an empty command, or has `quiet` other than `true`. For a project with APIs, approval is also invalid unless `stack.yaml.api.source_of_truth` is `DETECTED`, names an existing repository file, and uses `OPENAPI`, `ASYNCAPI`, `GRAPHQL_SCHEMA`, or `PROTOBUF`; this file is the project API source of truth. Approval is also invalid unless `docs/stack-review.md` is a complete Italian human-facing review with no unresolved placeholders and values consistent with `stack.yaml`. `APPROVE STACK` sets root `project_gates.stack.status: APPROVED` and `project_phase: REQUIREMENTS_ANALYSIS`. `REJECT STACK` sets `REJECTED`, retains `project_phase: STACK_APPROVAL`, and stops workflow execution. Only `REFRESH STACK` authorizes a new stack analysis. No repository or requirements analysis occurs here.
 
 ## State update
 

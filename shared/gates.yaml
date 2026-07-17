@@ -33,3 +33,8 @@ gates:
     artifact: tasks.yaml
     approved_status: APPROVED
     rejected_status: REJECTED
+  implementation:
+    phase: IMPLEMENTATION_APPROVAL
+    command: START IMPLEMENTATION
+    artifact: tasks.yaml
+    approved_status: APPROVED

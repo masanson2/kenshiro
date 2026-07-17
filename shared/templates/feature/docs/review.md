@@ -4,7 +4,7 @@
 
 {{modified_components}}
 
-## Attività implementate
+## Attivita implementate
 
 {{implemented_tasks}}
 

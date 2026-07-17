@@ -8,6 +8,13 @@ components:
   batch_jobs: []
   database_artifacts: []
   tests: []
+api_contract:
+  format: NONE
+  path: ""
+  affected_operations: []
 dependencies: []
+changes: []
+queries: []
+class_diagram: ""
 regressions: []
 risk: LOW

@@ -14,6 +14,7 @@ Process only branch approval and branch rename commands.
 
 - `.kenshiro/features/<feature-id>/workflow.yaml`
 - `.kenshiro/features/<feature-id>/git.yaml`
+- `.kenshiro/features/<feature-id>/docs/branch.md`
 - Exact command: `APPROVE BRANCH` or `RENAME BRANCH <new-name>`
 - `../shared/gates.yaml`
 
@@ -25,7 +26,7 @@ Process only branch approval and branch rename commands.
 
 ## Rules
 
-Require `current_phase: BRANCH_APPROVAL`, `repository: true`, and `feature_branch.status: PROPOSED`. `RENAME BRANCH <new-name>` accepts a non-empty Git branch name, changes only the proposal, keeps the branch gate `PENDING`, and does not create a branch. `APPROVE BRANCH` first verifies the proposed name does not already exist, then creates and checks out exactly that branch, then verifies the current branch equals the proposal. On success set `feature_branch.status: ACTIVE`, `feature_branch.current_branch` to the actual current branch, `git_branch.status: ACTIVE`, `gates.branch.status: APPROVED`, feature registry status `IN_PROGRESS`, and `current_phase: IMPACT_ANALYSIS`. On failure set `feature_branch.status: FAILED`, `git_branch.status: FAILED`, and `gates.branch.status: FAILED`.
+Require `current_phase: BRANCH_APPROVAL`, `repository: true`, and `feature_branch.status: PROPOSED`. Before `APPROVE BRANCH`, require `docs/branch.md` to be a complete Italian human-facing proposal with no unresolved placeholders and values matching `git.yaml`. `RENAME BRANCH <new-name>` accepts a non-empty Git branch name, changes only the technical proposal, regenerates `docs/branch.md`, keeps the branch gate `PENDING`, and does not create a branch. `APPROVE BRANCH` first verifies the proposed name does not already exist, then creates and checks out exactly that branch, then verifies the current branch equals the proposal. On success set `feature_branch.status: ACTIVE`, `feature_branch.current_branch` to the actual current branch, `git_branch.status: ACTIVE`, `gates.branch.status: APPROVED`, feature registry status `IN_PROGRESS`, and `current_phase: IMPACT_ANALYSIS`. On failure set `feature_branch.status: FAILED`, `git_branch.status: FAILED`, and `gates.branch.status: FAILED`.
 
 ## State update
 

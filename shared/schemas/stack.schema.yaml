@@ -47,8 +47,19 @@ properties:
     properties: {style: {$ref: "#/$defs/detected"}}
   api:
     type: object
-    required: [style]
-    properties: {style: {$ref: "#/$defs/detected"}}
+    required: [style, source_of_truth]
+    properties:
+      style: {$ref: "#/$defs/detected"}
+      source_of_truth:
+        type: object
+        required: [status, format, path, evidence]
+        properties:
+          status: {enum: [DETECTED, NOT_APPLICABLE, UNKNOWN]}
+          format: {enum: [OPENAPI, ASYNCAPI, GRAPHQL_SCHEMA, PROTOBUF, NONE, UNKNOWN]}
+          path: {type: string}
+          evidence:
+            type: array
+            items: {type: string}
   testing:
     type: object
     required: [framework]

@@ -18,3 +18,7 @@
 - Compilazione: `{{compile_command}}`
 - Test: `{{test_command}}`
 - {{cicd}}
+
+## Contratto API
+
+{{api_contract}}

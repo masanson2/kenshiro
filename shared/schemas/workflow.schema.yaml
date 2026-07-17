@@ -3,7 +3,7 @@ required: [version, current_phase, skills, gates]
 properties:
   version: {type: integer, const: 1}
   current_phase:
-    enum: [PROPOSE_BRANCH, BRANCH_APPROVAL, IMPACT_ANALYSIS, IMPACT_APPROVAL, GENERATE_TASKS, TASK_APPROVAL, IMPLEMENTATION, REVIEW, DONE]
+    enum: [PROPOSE_BRANCH, BRANCH_APPROVAL, IMPACT_ANALYSIS, IMPACT_APPROVAL, GENERATE_TASKS, TASK_APPROVAL, IMPLEMENTATION_APPROVAL, IMPLEMENTATION, REVIEW, DONE]
   skills:
     type: object
     properties:
@@ -14,10 +14,12 @@ properties:
       review: {$ref: "#/$defs/status"}
   gates:
     type: object
+    required: [impact, branch, tasks, implementation]
     properties:
       impact: {$ref: "#/$defs/gate"}
       branch: {$ref: "#/$defs/gate"}
       tasks: {$ref: "#/$defs/gate"}
+      implementation: {$ref: "#/$defs/gate"}
 $defs:
   status:
     type: object

@@ -26,7 +26,7 @@ project_phases:
   READY_FOR_FEATURE_WORK: {}
 feature_phases:
   PROPOSE_BRANCH:
-    produces: [git.yaml]
+    produces: [git.yaml, branch.md]
     next: BRANCH_APPROVAL
   BRANCH_APPROVAL:
     gate: branch
@@ -44,10 +44,13 @@ feature_phases:
     next: TASK_APPROVAL
   TASK_APPROVAL:
     gate: tasks
-    approve: IMPLEMENTATION
+    approve: IMPLEMENTATION_APPROVAL
     reject: GENERATE_TASKS
+  IMPLEMENTATION_APPROVAL:
+    gate: implementation
+    approve: IMPLEMENTATION
   IMPLEMENTATION:
-    requires_gates: [impact, branch, tasks]
+    requires_gates: [impact, branch, tasks, implementation]
     next: REVIEW
   REVIEW:
     produces: [review.md]

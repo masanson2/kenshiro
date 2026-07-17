@@ -17,10 +17,12 @@ Detect Git and create one branch proposal for the active feature.
 - `.kenshiro/features/<feature-id>/feature.yaml`
 - `.kenshiro/features/<feature-id>/workflow.yaml`
 - `../shared/schemas/git.schema.yaml`
+- `../shared/templates/feature/docs/branch.md`
 
 ## Outputs
 
 - `.kenshiro/features/<feature-id>/git.yaml`
+- `.kenshiro/features/<feature-id>/docs/branch.md`
 - Updated `.kenshiro/features/<feature-id>/workflow.yaml`
 - Appended `.kenshiro/activity.log`
 
@@ -30,8 +32,8 @@ Require `current_phase: PROPOSE_BRANCH`. Detect Git by checking `.git`. If absen
 
 ## State update
 
-For Git repositories, write `git.yaml` with `repository: true`, base branch, current branch, `feature_branch.status: PROPOSED`, `git_branch.status: PENDING`, and proposed name. Set `skills.propose-branch.status: DONE`, `gates.branch.status: PENDING`, and `current_phase: BRANCH_APPROVAL`. Append `Branch Proposed`.
+For Git repositories, write the technical branch proposal only to `git.yaml`. Render `docs/branch.md` as a concise Italian human-facing proposal stating the base branch, proposed branch, and that no branch has yet been created. Set `skills.propose-branch.status: DONE`, `gates.branch.status: PENDING`, and `current_phase: BRANCH_APPROVAL`. Append `Branch Proposed`.
 
 ## Completion criteria
 
-`git.yaml` conforms to its schema, exactly one proposal exists for the feature, and no Git branch was created.
+`git.yaml` conforms to its schema, `docs/branch.md` exists in Italian with no unresolved placeholders, exactly one proposal exists for the feature, and no Git branch was created.

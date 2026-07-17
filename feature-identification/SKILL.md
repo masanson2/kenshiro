@@ -24,7 +24,7 @@ Produce the feature proposal document without creating feature workspaces or bra
 
 ## Rules
 
-Generate `features-analysis.md` from the shared template with a `Detected Features` heading. For every capability include `Feature Name`, `Description`, `Reason for Separation`, and `Proposed Branch`. Every detected feature represents exactly one business capability and has exactly one proposed branch. Do not create feature directories, Git branches, tasks, impact analyses, or implementation.
+Generate the Italian human-facing `features-analysis.md` from the shared template. For every capability include the feature name, description, reason for separation, and proposed branch. The root `workflow.yaml.capabilities` remains the agent's technical planning state. Every detected feature represents exactly one business capability and has exactly one proposed branch. Do not create feature directories, Git branches, tasks, impact analyses, or implementation.
 
 ## State update
 
